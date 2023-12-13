@@ -1,0 +1,253 @@
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
+
+.container{
+    max-width: 1200PX; /*para que ocupe un max de 1200px de ancho*/
+    margin: auto; /*el bloque se centra*/
+}
+
+
+/*Hero (banner)*/
+
+.hero{
+    background-image: url(/img/funkos-banner.webp);
+    padding: var(--spancing-128);
+    background-position: top;
+    background-size: cover; /*Cubre todo el contenedor*/
+    background-attachment: fixed; /*para que se quede quieto*/
+    position: relative;
+}
+
+.hero::before{ /*Si lo pongo en el hero me nubla todo (incluido el texto), asi toma solo el */
+    content: ''; /*siempre tiene que tener un contenido pero como no lo necesitamos lo dejamos vacio*/
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute; /*before tiene un posicionamiento estatico y se ubica atrás de la imagen para que se vea necesitamos poner un position*/
+    backdrop-filter: blur(2px) brightness(.9); /*Para nublar la imagen*/
+}
+
+.hero__content{
+    display: flex; /*No para que se pongan al lado del otro sino para poder usar el gap*/
+    flex-direction: column; /*Uno abajo del otro*/
+    gap: var(--spancing-20); /*Espacio entre los elementos*/
+    align-items: start; /*Se ubique desde el inicio para que el bloque/fondo tenga el tamaño del elemento*/
+    position: relative; /*Para que no tome la neblina los elementos*/
+}
+
+.hero__title{
+    font-size: var(--font-jumbo); /*Tamaño letra*/
+    color: var(--light-front-solid);
+}
+
+.hero__text{
+    font-size: var(--font-medium);
+    color: var(--light-front-solid);
+}
+
+.hero__link{
+    display: inline-block; /*Como es un link para que tome bien los padding, margin, etc.*/  
+    font-size: var(--font-medium);
+    background-color: var(--light-bg-solid);
+    padding: var(--spancing-12) var(--spancing-68); /*Deja espacios alrededor de los elementos*/
+    border-radius: 50px ;
+    font-weight: 500; /*Peso de letra, hacerlo un poco más oscuro*/
+    /*Como el padre (.hero__content) tiene display flex y flex-direction en colum los elementos internos toman el valor stretch (estirar) y toma todo el ancho del container*/   
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hero__link:hover{
+    background-color: var(--primary-900);
+    color: var(--light-front-solid);
+}
+
+
+/*Collection*/
+
+.collection{
+    display: grid; /*No se usa flex porque hace que uno quede al lado del otro pero no alineados con los de arriba*/
+    grid-template-columns: repeat(2,1fr); /*Para que se divida en dos columnas y ambos tomando el 50%*/
+    align-items: center; /*Lo centra verticalmente*/
+    padding: var(--spancing-16) 0;
+}
+
+.collection:nth-child(2) .collection__cover{ /*Seleccionamos el hijo 2 (section 2) para darle un orden distinto al elemento interno*/
+    order: -1; /*Lo movemos 1 hacia la izquierda*/
+}
+
+.collection__content{ 
+    display: flex;
+    flex-direction: column;
+    gap: var(--spancing-24);
+    align-items: start; /*Se ubique desde el inicio para que el bloque/fondo tenga el tamaño del elemento*/
+}
+
+.collection__title{
+    font-family: var(--alternative-font);
+    font-size: var(--font-display); /*Tamaño*/
+    font-weight: 500; /*Peso de la fuente (grosor)*/
+}
+
+.collection__text{
+    font-family: var(--alternative-font);
+    font-size: var(--font-large); /*Tamaño*/
+    font-weight: 300; /*Peso de la fuente (grosor)*/
+    border-bottom: 2px solid var(--primary-solid);
+    padding-bottom: var(--spancing-20);
+}
+
+.collection__cover-img {
+    width: 100%;
+}
+
+.collection__link{
+    display: inline-block;
+    font-size: var(--font-medium);
+    background-color: var(--dark-bg-solid);
+    color: var(--light-front-solid);
+    padding: var(--spancing-12) var(--spancing-36);
+    /*Como el padre (.collection__content) tiene display flex y flex-direction en colum los elementos internos toman el valor stretch (estirar) y toma todo el ancho del container*/  
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+
+.collection__link:hover{
+    background-color: var(--primary-900);
+    color: var(--light-front-solid);
+}
+
+
+/*Slider*/
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spancing-36);
+    margin: var(--spancing-68) auto;
+}
+
+.slider__title{
+    font-family: var(--alternative-font);
+    font-size: var(--font-display);
+    text-transform: uppercase; /*Mayúscula*/
+}
+
+iconify-icon{
+    color: var(--dark-bg-solid);
+    font-size: var(--font-small);
+    font-weight: 700;
+}
+
+.glide__arrow--left{
+    left: 0;
+}
+
+.glide__arrow--right{
+    right: 0;
+}
+
+.card-item__cover{
+    display: flex; /*Porque si no lo ponemos hace un pequeño salto porque al desaparecer la imagen cambia el tamaño*/
+    position: relative;
+}
+
+.card-item__tag{
+    font-size: var(--font-xsmall);
+    text-transform: uppercase;
+    background-color: var(--primary-solid);
+    color: var(--light-front-solid);
+    padding: var(--spancing-8) var(--spancing-12);
+    position: absolute; /*y poner relativo al padre*/
+    right: 0;
+}
+
+.card-item__cover img{
+    animation: fade .7s;
+}
+
+.card-item__link {
+    text-decoration: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+.card-item__img--back, .card-item__img--front {
+    width: 100%;
+}
+
+.card-item__img--back{
+    display: none;
+}
+
+.card-item__cover:hover .card-item__img--back{
+    display: block;
+}
+
+.card-item__cover:hover .card-item__img--front{
+    display: none;
+}
+
+
+.card-item__content{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spancing-12); /*distancia entre los elementos del bloque*/
+    padding: var(--spancing-16); /*distancia del bloque hijo con el padre*/
+}
+
+.card-item__licence{
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.card-item__name{
+    font-size: var(--font-medium);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.card-item__price{
+    font-size: var(--font-small);
+}
+
+.card-item__promo{
+    font-size: var(--font-xsmall);
+    color: var(--secondary-solid);
+    font-weight: 700;
+}
+
+/*ANIMATIONS*/
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .collection__title{
+        font-size: var(--font-medium);
+        font-weight: 700;
+    }
+    .slider__title{
+        font-size: var(--font-large);
+    }
+}
+@media screen and (min-width: 768px) {
+        .collection__title{
+            font-family: var(--alternative-font);
+            font-size: var(--font-display); 
+            font-weight: 500; 
+        }
+    }

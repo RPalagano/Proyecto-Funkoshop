@@ -1,0 +1,254 @@
+.header {
+    width: 100%;
+    background-color: var(--dark-bg-solid);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header__container {
+    width: 100%;
+    max-width: 122rem;
+    margin: 0 auto;
+    height: 14.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__logo, .container__nav {
+    display: flex;
+    align-items: center;
+}
+
+.container__logo {
+    width: 70%;
+    margin-left: 5%;
+    justify-content: flex-start;
+}
+
+.container__logo-image {
+    width: 100%;
+    min-width: 20rem;
+    max-width: 25rem;
+    max-height: 6.5rem;
+}
+
+.container__nav {
+    width: 30%;
+    justify-content: flex-end;
+}
+
+.nav__list{
+    position: absolute;
+    top: 14.4rem;
+    width: 40%;
+    height: calc(100vh - 14.4rem);
+    padding-top: 3rem;
+    padding-left: 3rem;
+    font-family: var(--alternative-font);
+    font-weight: 500;
+    font-size: 1.4em;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background-color: var(--dark-solid);
+}
+
+.list__close {
+    position: absolute;
+    top: -9.5rem;
+    right: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.list__close-logo {
+    font-size: 3.5em;
+    color: var(--light-front-solid);
+}
+
+.list__item {
+    list-style: none;
+    padding: 1rem;
+    transition: background .3s ease-in-out;
+    cursor: pointer;
+}
+
+.list__item-decoration {
+    text-decoration: none;
+    color: var(--light-front-solid);
+}
+
+.item__arrow {
+    display: none;
+}
+
+.item__cart-logo {
+    width: 0;
+}
+
+.item__shop{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.item__shop:hover .submenu{
+   display: block;
+}
+
+.submenu{
+    background-color: var(--dark-bg-solid);
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 2rem;
+    font-size: 1em;
+    list-style: none;
+}
+
+.submenu__link{
+    display: block;
+    color: var(--light-front-solid);
+    text-decoration: none;
+}
+
+.submenu__item:hover, .list__item:hover{
+    background-color: var(--primary-900);
+    transition: background .3s ease-in-out;
+}
+
+.nav__hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 4.5%;
+}
+
+.hamburger__icon {
+    font-size: 4em;
+    color: var(--light-front-solid);
+}
+
+@media screen and (min-width: 650px) {
+    .header__container {
+        justify-content: center;
+    }
+
+    .container__logo {
+        width: 40%;
+        min-width: 25rem;
+    }
+
+    .submenu{
+        display: none;
+        width: 300px;
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        background-color: var(--dark-bg-solid);
+        margin: 0;
+    }
+    
+    .submenu__link{
+        display: block;
+        padding: var(--spancing-8) var(--spancing-16);
+        text-align: center;
+        transition: background .3s ease-in-out;
+    }
+    
+    .submenu__link:hover{ /*al pasar el mouse aparece*/
+        background-color: var(--primary-900);
+    }
+
+    .container__logo-image {
+        width: 100%;
+        max-width: 30rem;
+    }
+
+    .container__nav {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav__list {
+        position: static;
+        background: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        height: auto;
+        max-width: 40.6rem;
+        font-size: 1.4em;
+        padding: 0;
+    }   
+        
+    .item__shop {
+        --transform: rotate(-90deg);
+    }
+    
+    .item__shop:hover{
+        --transform: rotate(0);
+    }
+    
+    .item__arrow{
+        display: inline;
+        transform: var(--transform);
+        transition: transform .3s;
+        margin: 0.2rem 0.5rem;
+    }
+
+    .item__login, .item__contact, .item__shop {
+        display: block;
+    }
+
+    .item__cart-text {
+        font-size: 0;
+    }
+
+    .item__cart-logo {
+        width: 3rem;
+    }
+
+    .nav__hamburger, .list__close {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 940px){
+    .container__logo {
+        justify-content: center;
+        width: 50%;
+        margin-left: 0;
+    }
+
+    .container__nav {
+        width: 50%;
+    }
+
+    .nav__list {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (min-width: 1220px){
+    .nav__list {
+        font-size: 2em;
+    }
+
+    .container__logo {
+        justify-content: start;
+    }
+
+    .container__nav {
+        justify-content: end;
+    }
+}

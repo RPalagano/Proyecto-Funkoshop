@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/headerAdmin.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <%- include('../partials/headerAdmin') %>
+    <main class="container">
+
+        <article class="form___article">
+
+            <h1 class="titulo">Ingresar a mi cuenta</h1>
+
+            <% if (typeof errors!= 'undefined'){ %>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+                <% } %>
+
+                
+            <form action="/login" method="post">
+                <article class="form___datos">        
+                    <section class="form___conjunto">
+                        <label for="email">Email:</label>
+                        <input class="form__subitem form__border" type="email" id="email" name="email" value="<%= typeof values != 'undefined' ? values.email: '' %>" placeholder="jhondoe@correo.com">
+                    </section>
+            
+                    <section class="form___conjunto">
+                        <label for="contrasena1">Contraseña:</label>
+                        <input class="form__subitem form__border" type="password" id="password" name="password" placeholder="**********">
+                    </section>
+                </article>
+            
+    
+                <section class="form__contrasena">
+                    <a href="#">Olvidé mi contraseña</a>  
+                </section> 
+                <article class="form__final">
+                    <section>
+                        <input class="form__ingresarBotton" type="submit" value="Ingresar">
+                    </section>   
+                    <section class="form__recordarme">
+                        <input type="checkbox" value="tyc">
+                        <label>Recordarme</label>
+                    </section>                 
+                </article>
+             </form>
+        </article>
+    </main>
+    <%- include('../partials/footer') %> 
+    <script src="js/header.js"></script>
+</body>
+</html>
+
+

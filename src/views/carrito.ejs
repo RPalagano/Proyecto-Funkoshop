@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="icon"  href="/img/branding/Logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/carrito.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+    <%- include('partials/header') %>
+    
+    <main class="main">
+        <section class="carrito">
+            <H1 class="carrito__titulo">CARRITO DE COMPRAS</H1>
+            <article class="carrito__variables">
+                <h3 class="variables__detalle">DETALLE DE PRODUCTO</h3>
+                <h3 class="variables__cantidad">CANTIDAD</h3>
+                <h3 class="variables__total">TOTAL</h3>
+            </article>
+            <article class="carrito__producto1">
+                <section class="producto1__item">
+                    <img class="item__imagen" src="/uploads/producto_<%= producto.id %>.png" alt="baby_yoda">
+                    <div class="item__detalle">
+                        <h2 class="detalle__titulo"><%= producto.producto_nombre %></h2>
+                        <h5 class="detalle__categoria"><%= producto.Licencium.licencia_nombre %></h5>
+                        <p class="detalle__precio">Precio unitario: $ <%= producto.precio %></p>
+                    </div>
+                </section>
+                <section class="producto1__cantidad">
+                    <input class="cantidad__numero quantity" type="text" name="quantity" placeholder="2"></input>
+                    <div class="cantidad__items">
+                        <button class="cantidad__items-mas more" type="button">+</button>
+                        <button class="cantidad__items-menos less" type="button">-</button>
+                    </div>
+                </section>
+                <section class="producto1__total">
+                    <p class="total__numero">$ <%= producto.precio %></p>
+                </section>
+                <section class="producto1__eliminar">
+                    <button class="eliminar__boton">
+                        <i class="bi bi-x-circle eliminar__boton-circle"></i>
+                    </button>
+                </section>
+            </article>
+        </section>
+        <section class="resumen">
+            <H1 class="resumen__titulo">RESUMEN</H1>
+            <div class="resumen__container">
+                <h4 class="container__item">CANTIDAD DE ELEMENTOS</h4>
+                <P class="container__numero">2</P>
+                <h4 class="container__item">SUBTOTAL</h4>
+                <p class="container__numero">$ <%= producto.precio %></p>
+                <h4 class="container__item">ENVIO</h4>
+                <p class="container__numero">$ 0,00</p>
+                <h3 class="container__total">TOTAL</h3>
+                <p class="container__total-numero">$ <%= producto.precio %></p>
+            </div>
+            <h2 class="resumen__pagar">IR A PAGAR</h2>
+        </section>
+    </main>
+    
+    <%- include('partials/footer') %> 
+
+</body>
+<script src="/js/header.js"></script>
+<script src="/js/quantities.js"></script>
+</html>

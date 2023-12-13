@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="icon"  href="/img/branding/Logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+<main class="container">
+    <article class="article__container">
+        <section class="forms">
+                <label class="text-box"  for="site-search"><strong>BUSCAR</strong> </label>
+                <input class="text-box__type" type="search" id="site-search" name="search" 
+                value="Item o categoría"/>
+                
+                <label class="text-box" for="ordenar"> <strong>ORDENAR POR</strong> </label>
+                <input class="text-box__type" type="ordenar" id="ordenar" name="ordenar" 
+                value="Mayor a menor"/>
+                
+                <h2>PRECIO</h2>
+                <label for="minimo-precio">MIN</label>
+                <input class="text-box__type2" type="minimo" id="minimo" name="minimo" min="10" max="100" value="0" />
+
+                <label for="maximo-precio">MAX</label>
+                <input class="text-box__type2" type="maximo" id="maximo" name="maximo" min="10" max="100" value="0" />
+
+                <h2>FILTRAR</h2>
+                
+                <div>
+                    <input class="checkbox"  type="checkbox" id="nuevos" name="productos" value="nuevos" />
+                    <label for="nuevos">NUEVOS</label>
+                </div>
+                <div>
+                    <input class="checkbox"  type="checkbox" id="ofertas" name="productos" value="ofertas" />
+                    <label for="ofertas">OFERTAS</label>
+                </div>
+                
+                <div>
+                    <input class="checkbox"  type="checkbox" id="edicion-especial" name="productos" value="edicion-especial" />
+                    <label for="edicion-especial">EDICION ESPECIAL</label>
+                </div>
+                
+                <div>
+                    <input class="checkbox"  type="checkbox" id="favoritos" name="productos" value="favoritos" />
+                    <label for="favoritos">FAVORITOS</label>
+                </div> 
+            </section> 
+            <section class="grid container">
+            <% productos.forEach(producto => { %>
+                <article class="card-item">
+                    <a class="card-item__link" href="/<%= producto.id %>/item">
+                        <picture class="card-item__cover">
+                            <span class="card-item__tag"> Nuevo </span>
+                            <img class="card-item__img-front" src="/uploads/producto_<%= producto.id %>.png" alt="Figura coleccionable Funko de <%= producto.producto_nombre%>">
+                            <img class="card-item__img-back" src="/uploads/producto_back_<%= producto.id %>.png" alt="Figura coleccionable Funko de <%= producto.producto_nombre%> en caja">
+                        </picture>
+                        <div class="card-item__content">
+                            <p class="card-item__licence"><%= producto.Licencium.licencia_nombre%> </p>
+                            <h4 class="card-item__name"><%= producto.producto_nombre %></h4>
+                            <p class="card-item__price">$ <%= producto.precio%></p>
+                            <p class="card-item__promo"><%= producto.cuotas %> CUOTAS SIN INTERÉS</p>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+    <div class="pagination"><a href=""><</a>
+                            <a href="">1</a>
+                            <a href="">2</a>
+                            <a href="">...</a>
+                            <a href="">9</a>
+                            <a href="">10</a>
+                            <a href="">></a>
+    </div> 
+</main>
+
+    <%- include('partials/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <script src="/js/header.js"></script>
+</body>
+</html>

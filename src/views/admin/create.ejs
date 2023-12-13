@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Productos</title>
+    <link rel="icon"  href="/img/branding/Logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/createEdit.css">
+    <link rel="stylesheet" href="/css/headerAdmin.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+      
+</head>
+<body>
+
+    <%- include('../partials/headerAdmin') %>
+
+    <main class="container">
+
+        <% if (typeof errors!= 'undefined'){ %>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+        <% } %>
+        
+        <form class="form__container"  action="/admin/productos" method="post" enctype="multipart/form-data">
+            <h3>Crear nuevo item</h3>
+
+            <section class="form__cat_lic">
+                <div> 
+                    <label class="form__item" for="categoria_id">Categoría:</label>
+                    <select class="form__desplegable" name="categoria_id" id="categoria_id">
+                    <option value="" disable selected hidden>Seleccionar</option>
+                    <% categorias.forEach((categoria) => { %>
+                        <option value="<%= categoria.id %>">
+                            <%= categoria.categoria_nombre%>
+                        </option>
+                    <% }); %>
+                    </select>
+                </div>
+               
+                <div>
+                    <label class="form__item" for="licencia_id">Licencia:</label>
+                    <select class="form__desplegable" name="licencia_id" id="licencia_id">
+                    <option value="" disable selected hidden>Seleccionar</option>
+                    <% licencias.forEach((licencia) => { %>
+                        <option value="<%= licencia.id %>">
+                            <%= licencia.licencia_nombre %>
+                        </option>
+                    <% }); %>
+                    </select>
+                </div>
+            </section>
+                
+            <section class="form__nombre_producto">    
+                    <label class="form__item" for="producto_nombre">Nombre del producto:</label>                   
+                    <input class="form__subitem form__border_large" type="text" id="producto_nombre" name="producto_nombre" required minlength="3" placeholder="Kakashi Hatake Shippuden Saga">    
+            </section>
+                
+            <section>
+                <textarea type="text" id="producto_descripcion" name="producto_descripcion" placeholder="Descripción del producto"></textarea>
+            </section>
+
+            <section class="form__tres_colums">
+                <div>
+                    <label class="form__item" for="sku">SKU:</label>
+                    <input class="form__subitem form__border_medium" type="text" id="sku" name="sku" placeholder="SSK111AB001">
+                </div>
+               
+                <div>
+                    <label class="form__item" for="precio">Precio:</label>
+                    <input class="form__subitem form__border_medium" type="number" id="precio" name="precio" required min="1" placeholder="$0.000,00">
+                </div>
+
+                <div>
+                    <label class="form__item" for="stock">Stock:</label>
+                    <input class="form__subitem form__border_small" type="number" id="stock" name="stock" placeholder="0">
+                </div>
+            </section>   
+
+            <section class="form__desc_cuotas">
+                <div>    
+                    <label class="form__item" for="descuento">Descuento:</label>
+                    <input class="form__subitem form__border_small" name="descuento" type="numero" id="descuento" placeholder="0%">
+                </div>
+               
+               <div>
+                    <label class="form__item" for="cuotas">Cuotas:</label>
+                    <select class="form__desplegable form__desplegable_cuotas" name="cuotas" id="licencia">
+                    <option value="" disable selected hidden>Seleccionar</option>
+                    <% let array_cuotas = [3, 6, 12, 0];
+                    array_cuotas.forEach((cuota) => { %>
+                        <option value="<%= cuota %>"><%= cuota %> Cuotas sin interés</option>
+                    <% }); %>
+                    </select>
+               </div>
+            </section>
+
+            <picture class="form__picture">
+                <label class="form__item" for="imagen">Imágenes:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" multiple placeholder="item o categoria">
+            </picture>
+
+            <section class="form__submit">
+                <input class="form__submit_item" type="submit" value="Agregar Producto">
+                <input class="form__submit_item" type="submit" value="Limpiar">
+            </section>
+        </form>
+    </main>
+
+    <%- include('../partials/footer') %> 
+</body>
+</html>
+

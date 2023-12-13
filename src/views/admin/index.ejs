@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="icon"  href="/img/branding/Logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/headerAdmin.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+    <%- include('../partials/headerAdmin') %>
+
+    <main>
+        <section class="admin__search">
+          <img class="search__icon" src="../img/icons/search_icon.svg" alt="Icono de lupa">
+            <label class="text-box__admin"  for="site-search"></label>
+                <input class="text-box__type__admin" type="search" id="site-search" name="search" 
+                value="Código, nombre o categoría"/> 
+        </section> 
+        <section>
+        <table>
+            <tr class="table__header">
+                <th class="title__table">LISTADO DE PRODUCTOS</th>
+                <th>AGREGAR</th>
+                <th class="table__header__img"><a href="/admin/productos/create"><img src="../img/icons/plus-square-solid.svg" alt="Icono de agregar"></a></th>
+            </tr>
+        </table>
+            
+        <table class="admin__table">
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Nombre del producto</th>
+                <th>Licencia</th>
+            </tr>
+            <tbody>
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <td><%= producto.id %></td>
+                        <td><%= producto.sku %></td>
+                        <td><%= producto.producto_nombre %></td>
+                        <td><%= producto.Licencium.licencia_nombre %></td>
+                        <td>
+                            <a href="/admin/productos/<%= producto.id %>/edit"><img src="../img/icons/edit_pencil.svg" alt="Icono de editar"></a> |
+                            <form class="form-delete" style="display: inline-block" action="/admin/productos/<%= producto.id %>?_method=DELETE" method="post">
+                                <button type="submit"><img src="../img/icons/delete_trash.svg"alt="Icono de borrar"></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+
+        </table>    
+           
+        </section>
+    </main>  
+    <%- include('../partials/footer') %> 
+</body>
+</html>

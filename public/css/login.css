@@ -1,0 +1,124 @@
+main{
+    width: 515px;
+    height: 460px;
+    text-align: center;
+    position: relative;  
+    border-top: 8rem solid;
+    border-bottom: var(--spancing-128) solid;
+    border-color: var(--light-front-solid);
+
+
+} 
+
+
+.form___article{
+    width: 300px;
+    
+}
+
+h1{
+    text-transform: uppercase;
+    font-family: var(--alternative-font);
+    font-size: var(--font-large);
+    font-weight: 700;
+    letter-spacing: 0.105rem;
+    padding-bottom: 25rem;
+}
+
+
+.form___datos{
+    position: absolute;  
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*para centrarlo*/
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    gap: var(--spancing-24);
+    letter-spacing: 0.06rem;
+}
+
+.form___conjunto{
+    display: grid;
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+    letter-spacing: 0.06rem;
+
+}
+
+@media (min-width: 768px){
+    .form___article{
+        width: 52rem; 
+     
+    }
+
+    .form___datos{
+        width: 40rem;
+    }
+
+    .form___conjunto{
+        grid-template-columns: 50% 50%;
+        font-size: var(--font-medium);
+    }
+}
+
+@media (min-width: 1024px){
+    
+}
+
+@media (min-width: 1440px){
+    .form___article{
+        width: 515px; 
+    }
+}
+
+.form__subitem{
+    color: #B9B9B9;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.04rem;
+    padding-top: 0.5rem;
+}
+
+
+.form__border{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #FF3333;
+
+}
+
+.form__ingresarBotton{
+    color: #FFF;
+    text-align: center;
+    width: 6.43719rem;
+    height: 2.44138rem;
+    font-weight: 400;
+    font-size: 0.75rem;
+    background-color: #FF3333;
+    border: none;
+}
+
+.form__final{
+    position: absolute;  
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, -50%); /*para centrarlo*/
+    gap: var(--spancing-20);
+    
+}
+
+.form__recordarme{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.form__contrasena{
+    position: absolute;  
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, -50%); /*para centrarlo*/
+    padding-top: 11rem;
+}

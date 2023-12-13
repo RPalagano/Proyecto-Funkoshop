@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/headerAdmin.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <%- include('../partials/headerAdmin') %>
+
+    <main class="container">
+        <article class="form___article">
+            <h1 class="titulo">Crea tu cuenta</h1>
+            <p class="subtitulo">Completa el formulario para ser parte del mundo de los Funkos</p>          
+            
+            <% if (typeof errors!= 'undefined'){ %>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+                <% } %>
+
+            <form action="/register" method="post">
+    
+                <article class="form___datos">
+                    <section class="form___conjunto">
+                        <label for="nombre">Nombre:</label>
+                        <input class="form__subitem form__border" type="text" id="nombre" name="nombre" placeholder="John">
+                    </section>
+            
+                    <section class="form___conjunto">
+                        <label for="apellido">Apellido:</label>
+                        <input class="form__subitem form__border" type="text" id="apellido" name="apellido" placeholder="Doe">
+                    </section>
+            
+                    <section class="form___conjunto">
+                        <label for="email">Email:</label>
+                        <input class="form__subitem form__border" type="email" id="email" name="email" value="<%= typeof values != 'undefined' ? values.email: '' %>" placeholder="jhondoe@correo.com">
+                    </section>
+            
+                    <section class="form___conjunto">
+                        <label for="contrasena1">Contraseña:</label>
+                        <input class="form__subitem form__border" type="password" id="password" name="password" autocomplete="off" placeholder="**********">
+                    </section>
+            
+                    <section class="form___conjunto">
+                        <label for="contrasena2">Repetir contraseña:</label>
+                        <input class="form__subitem form__border" type="password" id="password_confirmation" name="password_confirmation" autocomplete="off" placeholder="**********">
+                    </section> 
+                </article>
+            
+                <article class="form__submit">
+                    <section>
+                        <input class="form__register" type="submit" value="Registrar">
+                    </section>
+                    
+                    <section class="form__tyc">
+                        <input type="checkbox" value="tyc" required>
+                        <label>Acepto</label><a href="#">Términos y Condiciones</a>
+                    </section>
+                </article>
+                <p class="warnings" id="warnings"></p>
+             </form>
+           </article>
+    </main>
+
+    <%- include('../partials/footer') %> 
+    <script src="js/header.js"></script>
+</body>
+</html>
+

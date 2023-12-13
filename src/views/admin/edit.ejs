@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Productos</title>
+    <link rel="icon"  href="/img/branding/Logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/CreateEdit.css">
+    <link rel="stylesheet" href="/css/headerAdmin.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+
+    <%- include('../partials/headerAdmin') %>
+
+    <main class="container">
+
+        <% if (typeof errors!= 'undefined'){ %>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+            <% } %>
+        
+        <form class="form__container" action="/admin/productos/<%= producto.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+            <h3>editar item</h3>
+
+            <section class="form__cat_lic">
+                <div> 
+                    <label class="form__item" for="categoria_id">Categoría:</label>
+                    <select class="form__desplegable" name="categoria_id" id="categoria_id">
+                    <option value="<%= producto.categoria_id %>" selected hidden>
+                        <%= producto.Categorium.categoria_nombre%>
+                    </option>
+                    <% categorias.forEach((categoria) => { %>
+                            <option value="<%= categoria.id %>">
+                                <%= categoria.categoria_nombre%>
+                            </option>
+                    <% }); %>
+                    </select>
+                </div>
+               
+                <div>
+                    <label class="form__item" for="licencia_id">Licencia:</label>
+                    <select class="form__desplegable" name="licencia_id" id="licencia_id">
+                    <option value="<%= producto.licencia_id %>" selected hidden><%= producto.Licencium.licencia_nombre%></option>
+                    <% licencias.forEach((licencia) => { %>
+                            <option value="<%= licencia.id %>">
+                                <%= licencia.licencia_nombre %>
+                            </option>
+                    <% }); %>
+                    </select>
+                </div>
+            </section>
+                
+            <section class="form__nombre_producto">    
+                    <label class="form__item" for="producto_nombre">Nombre del producto:</label>                   
+                    <input class="form__subitem form__border_large" type="text" id="producto_nombre" name="producto_nombre" value="<%= typeof producto != 'undefined' ? producto.producto_nombre : '' %>" required minlength="3"/>  
+            </section>
+                
+            <section>
+                <textarea name="producto_descripcion"><%=producto.producto_descripcion%></textarea>
+            </section>
+
+            <section class="form__tres_colums">
+                <div>
+                    <label class="form__item" for="sku">SKU:</label>
+                    <input class="form__subitem form__border_medium" type="text" id="sku" value="<%= typeof producto != 'undefined' ? producto.sku : '' %>">
+                </div>
+               
+                <div>
+                    <label class="form__item" for="precio">Precio:</label>
+                    <input class="form__subitem form__border_medium" type="number" id="precio" name="precio" value="<%= typeof producto != 'undefined' ? producto.precio : '' %>" required min="1"/>
+                </div>
+
+                <div>
+                    <label class="form__item" for="stock">Stock:</label>
+                    <input class="form__subitem form__border_small" type="number" id="stock" value="<%= typeof producto != 'undefined' ? producto.stock : '' %>">
+                </div>
+            </section>   
+
+            <section class="form__desc_cuotas">
+                <div>    
+                    <label class="form__item" for="descuento">Descuento:</label>
+                    <input class="form__subitem form__border_small" type="text" id="descuento" name="descuento" value="<%= typeof producto.descuento != 'null' ? producto.descuento : '0' %>">
+                </div>
+               
+               <div>
+                    <label class="form__item" for="cuotas">Cuotas:</label>
+                    <select class="form__desplegable form__desplegable_cuotas" name="cuotas" id="cuotas">
+                        <option value="<%= producto.cuotas %>" selected hidden><%= producto.cuotas %> Cuotas sin interés</option>
+                        <% let array_cuotas = [3, 6, 12, 0];
+                            array_cuotas.forEach((cuota) => { %>
+                                <option value="<%= cuota %>"><%= cuota %> Cuotas sin interés</option>
+                        <% }); %>
+                    </select>
+               </div>
+            </section>
+
+            <picture class="form__picture">
+                <label class="form__item" for="imagen">Imágenes:</label>
+                <input type="file" id="imagen" placeholder="item o categoria" multiple accept="image/*">
+            </picture>
+
+            <section class="form__image">
+                <div class="image__container">
+                    <img class="image__container-img" src="/uploads/producto_<%=producto.id%>.jpg" alt="<%=producto.producto_nombre%>_frente">
+                    <p class="image__container-text">Frente</p>
+                </div>
+                <div class="image__container">
+                    <img class="image__container-img" src="/uploads/producto_back_<%=producto.id%>.jpg" alt="<%=producto.producto_nombre%>_dorso">
+                    <p class="image__container-text">Frente</p>
+                </div>
+            </section>
+
+            <section class="form__submit">
+                <input class="form__submit_item" type="submit" value="Modificar Producto">
+            </section>
+        </form>
+    </main>
+
+    <%- include('../partials/footer') %> 
+    
+</body>
+</html>
+
